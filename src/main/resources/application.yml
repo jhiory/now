@@ -1,0 +1,127 @@
+server:
+  port: 9000
+
+spring:
+  config:
+    location: currentdir/config
+  datasource:
+    driver-class-name: org.postgresql.Driver
+
+  jackson:
+    time-zone: Asia/Seoul
+    serialization:
+      write-dates-as-timestamps: false
+
+  mvc:
+    locale: ko_KR
+  messages:
+    basename: classpath:/messages/message
+    encoding: UTF-8
+    cache-duration:
+      seconds: -1
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2KB
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+  devtools:
+    livereload:
+      port: 35730
+
+mybatis:
+  config-location: classpath:mybatis-config.xml
+
+app:
+  jwtSecret: JWTSuperSecretKey
+  jwtExpirationInMs: 86400000
+  enKey: WR4mL6ntiAvKUYo1q1tXb5vI5faSUq5m
+
+# 로컬 환경
+---
+spring:
+  profiles: local
+  datasource:
+#    url: jdbc:log4jdbc:mysql://127.0.0.1:3306/point_db?autoReconnect=true&autoReconnection=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Seoul&useSSL=false
+#    username: point_user
+#    password: poinT1!@#
+    # postgresql
+    url: ENC(6WtnD65Fsw+IS6vxQTusyHiLzcGW6yeVy7uxxcLHCAEIJ31mVHuv1z1UfxI8kmxpgM3aL40yP/E=)
+    # hmfadm 계정
+    #username: ENC(8tS2835Q7FB8rv/43CEY1g==)
+    #password: ENC(AR41Laruuo9QMuA6oo7YUQ==)
+    # hmfusr 계정
+    username: ENC(ufZf6WY3lnX05kBPaQx3pQ==)
+    password: ENC(rLLG/jPs6q0n0spEaiXCMQ==)
+    sql-script-encoding: UTF-8
+
+logging:
+  config: classpath:logback-local.xml
+
+oauth:
+  client:
+    url: http://52.78.171.18:19010/oauth
+    id: 36ffaa7a-5ae8-4618-bb30-1adf08d8cd56
+    secret: 706e499d1aeab9b2ccb2ed915afa66aa
+
+# 개발 환경
+---
+
+spring:
+  profiles: development
+  datasource:
+#    url: jdbc:mysql://10.10.200.223:3306/hmf?autoReconnect=true&autoReconnection=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Seoul&useSSL=false
+#    username: hmfuser
+#    password: hmfuseR1@#$
+#    url: jdbc:mysql://10.167.26.212:3306/hmf?autoReconnect=true&autoReconnection=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Seoul&useSSL=false
+#    username: hmfusr
+#    password: HmfUsr12#$
+#    url: ENC(btHRFtKUGetbB6Ee6M8Y/znnDW9GMe5ziHWB0FzIOcKfBIhsayBcF5SXsqiLesXZ4AqU/KFzTCMtt/HEx9LwI40cj6clnco/Mt7rRbybRkpHpYtAoUmLerww4tkdg5itXGKOhcnys4+roKweujLVR7rcZianKp0krfncY2A7wE5TMJAKcFq2QaCuA40+dlT7qTaon7qGCarz1i5g7kqPmalTrUEKJlOXUQ1qPkEL9dCnmQLiooeYXkX+QSDmZX8S7pneBlkO/34=)
+#    username: ENC(5yyWovzOO22QrjOcZB2fqA==)
+#    password: ENC(Jwjal06jRYG9Fta7JswUhNiPY/xkObsY)
+    # postgresql
+    url: ENC(6WtnD65Fsw+IS6vxQTusyHiLzcGW6yeVy7uxxcLHCAEIJ31mVHuv1z1UfxI8kmxpgM3aL40yP/E=)
+    # hmfadm 계정
+    #username: ENC(8tS2835Q7FB8rv/43CEY1g==)
+    #password: ENC(AR41Laruuo9QMuA6oo7YUQ==)
+    # hmfusr 계정
+    username: ENC(ufZf6WY3lnX05kBPaQx3pQ==)
+    password: ENC(rLLG/jPs6q0n0spEaiXCMQ==)
+    sql-script-encoding: UTF-8
+
+logging:
+  config: classpath:logback-development.xml
+
+oauth:
+  client:
+    url: http://127.0.0.1:19010/oauth
+    id: 36ffaa7a-5ae8-4618-bb30-1adf08d8cd56
+    secret: 706e499d1aeab9b2ccb2ed915afa66aa
+
+file:
+  upload-dir: /openapi/upload
+
+#운영 환경
+---
+spring:
+  profiles: production
+  datasource:
+    # postgresql
+    url: ENC(6WtnD65Fsw+IS6vxQTusyHiLzcGW6yeVy7uxxcLHCAEIJ31mVHuv1z1UfxI8kmxpgM3aL40yP/E=)
+    # hmfadm 계정
+    #username: ENC(8tS2835Q7FB8rv/43CEY1g==)
+    #password: ENC(AR41Laruuo9QMuA6oo7YUQ==)
+    # hmfusr 계정
+    username: ENC(ufZf6WY3lnX05kBPaQx3pQ==)
+    password: ENC(rLLG/jPs6q0n0spEaiXCMQ==)
+    sql-script-encoding: UTF-8
+
+logging:
+  config: classpath:logback-production.xml
+
+oauth:
+  client:
+    url:
+    id:
+    secret:
