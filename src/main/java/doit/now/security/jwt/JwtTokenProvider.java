@@ -1,6 +1,7 @@
-package com.example.vi.security.jwt;
+package doit.now.security.jwt;
 
-import com.example.vi.security.UserPrincipal;
+
+import doit.now.security.UserPrincipal;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

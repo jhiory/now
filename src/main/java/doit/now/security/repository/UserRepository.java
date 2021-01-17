@@ -1,11 +1,7 @@
-package com.example.vi.security.repository;
+package doit.now.security.repository;
 
-import com.example.vi.security.dto.PasswordChangeRequest;
-import com.example.vi.security.vo.PwdHstVo;
-import com.example.vi.security.vo.UserVo;
-import com.example.vi.vo.LoginHstVo;
-import com.example.vi.vo.MenuVo;
-import com.example.vi.vo.UserLoginVo;
+import doit.now.security.dto.PasswordChangeRequest;
+import doit.now.vo.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -22,7 +18,9 @@ public interface UserRepository extends UserDetailsService {
      * @param userId
      * @return
      */
-    UserVo selectUserByUserId(@Param("userId") String userId);
+    default UserVo selectUserByUserId(@Param("userId") String userId) {
+        return null;
+    }
      
     List<MenuVo> selectRoleMapMenus(String roleId);
 

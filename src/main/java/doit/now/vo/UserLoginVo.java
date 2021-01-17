@@ -1,4 +1,4 @@
-package com.example.vi.vo;
+package doit.now.vo;
 
 import lombok.Data;
 import org.apache.ibatis.type.Alias;

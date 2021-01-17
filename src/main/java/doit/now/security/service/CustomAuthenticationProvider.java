@@ -1,6 +1,6 @@
-package com.example.vi.security.service;
+package doit.now.security.service;
 
-import com.example.vi.exception.ServerException;
+import doit.now.exception.ServerException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -18,6 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
+
 
 @Slf4j
 @Component

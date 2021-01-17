@@ -1,4 +1,4 @@
-package com.example.vi.aspectj;
+package doit.now.aspectj;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -24,7 +24,7 @@ public class CommonAspectj {
 	@Autowired
     MessageSourceAccessor messageSource;
 
-	@Pointcut("execution(* com.example.vi.security.controller.*Controller.*(..))")
+	@Pointcut("execution(* doit.now.security.controller.*Controller.*(..))")
 	public void getControllerView() {
 	}
 

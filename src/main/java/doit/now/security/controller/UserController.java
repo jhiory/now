@@ -1,10 +1,11 @@
-package com.example.vi.security.controller;
+package doit.now.security.controller;
 
 
-import com.example.vi.security.UserPrincipal;
-import com.example.vi.security.dto.PasswordChangeRequest;
-import com.example.vi.security.service.UserService;
-import com.example.vi.vo.UserLoginVo;
+
+import doit.now.security.UserPrincipal;
+import doit.now.security.dto.PasswordChangeRequest;
+import doit.now.security.service.UserService;
+import doit.now.vo.UserLoginVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;

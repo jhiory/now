@@ -1,8 +1,8 @@
-package com.example.vi.config;
+package doit.now.config;
 
-import com.example.vi.security.jwt.JwtAuthenticationEntryPoint;
-import com.example.vi.security.jwt.JwtAuthenticationFilter;
-import com.example.vi.security.service.CustomAuthenticationProvider;
+import doit.now.security.jwt.JwtAuthenticationEntryPoint;
+import doit.now.security.jwt.JwtAuthenticationFilter;
+import doit.now.security.service.CustomAuthenticationProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

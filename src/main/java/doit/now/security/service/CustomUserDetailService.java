@@ -1,8 +1,9 @@
-package com.example.vi.security.service;
+package doit.now.security.service;
 
-import com.example.vi.security.UserPrincipal;
-import com.example.vi.security.model.User;
-import com.example.vi.security.repository.UserRepository;
+
+import doit.now.security.UserPrincipal;
+import doit.now.security.model.User;
+import doit.now.security.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.example.vi.config;
+package doit.now.config;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;

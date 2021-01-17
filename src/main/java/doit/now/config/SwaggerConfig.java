@@ -1,4 +1,4 @@
-package com.example.vi.config;
+package doit.now.config;
 
 import com.google.common.collect.Lists;
 import org.springframework.context.annotation.Bean;

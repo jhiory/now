@@ -1,7 +1,7 @@
-package com.example.vi.security.model;
+package doit.now.security.model;
 
 
-import com.example.vi.security.model.audit.UserDateAudit;
+import doit.now.security.model.audit.UserDateAudit;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

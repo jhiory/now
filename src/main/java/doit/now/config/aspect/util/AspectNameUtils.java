@@ -1,4 +1,4 @@
-package com.hcteleweb.teleweb.config.aspect.util;
+package doit.now.config.aspect.util;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.springframework.stereotype.Component;

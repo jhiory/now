@@ -1,4 +1,4 @@
-package com.example.vi.security;
+package doit.now.security;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 

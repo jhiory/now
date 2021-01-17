@@ -1,6 +1,7 @@
-package com.example.vi.security.jwt;
+package doit.now.security.jwt;
 
-import com.example.vi.security.service.CustomUserDetailService;
+
+import doit.now.security.service.CustomUserDetailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

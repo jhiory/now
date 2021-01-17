@@ -1,11 +1,12 @@
-package com.example.vi.security.controller;
+package doit.now.security.controller;
 
-import com.example.vi.exception.BadRequestException;
-import com.example.vi.security.dto.LoginRequest;
-import com.example.vi.security.dto.LoginResponse;
-import com.example.vi.security.jwt.JwtTokenProvider;
-import com.example.vi.security.repository.UserRepository;
-import com.example.vi.vo.LoginHstVo;
+
+import doit.now.exception.BadRequestException;
+import doit.now.security.dto.LoginRequest;
+import doit.now.security.dto.LoginResponse;
+import doit.now.security.jwt.JwtTokenProvider;
+import doit.now.security.repository.UserRepository;
+import doit.now.vo.LoginHstVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;

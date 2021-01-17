@@ -1,4 +1,4 @@
-package com.example.vi.security.model.type;
+package doit.now.security.model.type;
 
 public enum RoleCode {
     ADMIN,

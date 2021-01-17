@@ -1,4 +1,4 @@
-package com.hcteleweb.teleweb.config.aspect;
+package doit.now.config.aspect;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

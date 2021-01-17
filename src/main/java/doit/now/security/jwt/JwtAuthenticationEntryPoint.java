@@ -1,4 +1,4 @@
-package com.example.vi.security.jwt;
+package doit.now.security.jwt;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

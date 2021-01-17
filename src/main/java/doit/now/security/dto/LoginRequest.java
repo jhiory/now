@@ -1,4 +1,4 @@
-package com.example.vi.security.dto;
+package doit.now.security.dto;
 
 import lombok.Data;
 

@@ -1,4 +1,4 @@
-package com.example.vi.config;
+package doit.now.config;
 
 import org.jasypt.encryption.StringEncryptor;
 import org.jasypt.encryption.pbe.PooledPBEStringEncryptor;

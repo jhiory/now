@@ -1,4 +1,4 @@
-package doit.now.security.vo;
+package doit.now.vo;
 
 import lombok.Data;
 import org.apache.ibatis.type.Alias;

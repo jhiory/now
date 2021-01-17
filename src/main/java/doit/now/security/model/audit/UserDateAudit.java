@@ -1,4 +1,4 @@
-package com.example.vi.security.model.audit;
+package doit.now.security.model.audit;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.annotation.CreatedBy;

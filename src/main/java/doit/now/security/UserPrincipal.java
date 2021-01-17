@@ -1,7 +1,8 @@
-package com.example.vi.security;
+package doit.now.security;
 
-import com.example.vi.security.model.User;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import doit.now.security.model.User;
 import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
