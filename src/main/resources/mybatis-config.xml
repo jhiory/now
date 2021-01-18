@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+    <typeAliases>
+        <package name="com.example.vi.vo"/>
+        <package name="postgres"/>
+        <package name="com.example.vi.domain"/>
+
+    </typeAliases>
+    <mappers>
+        <mapper resource="mapper/AppMenuInfoMapper.xml"/>
+        <mapper resource="mapper/FaqMapper.xml"/>
+        <mapper resource="mapper/QnaMapper.xml"/>
+        <mapper resource="mapper/NoticeMapper.xml"/>
+        <mapper resource="mapper/CodeManagementMapper.xml"/>
+        <mapper resource="mapper/MenuManagementMapper.xml"/>
+        <mapper resource="mapper/UserManagementMapper.xml"/>
+        <mapper resource="mapper/UserMapper.xml"/>
+        <mapper resource="mapper/OrgMapper.xml"/>
+        <mapper resource="mapper/OrgMchtMapper.xml"/>
+        <mapper resource="mapper/PointCardMngMapper.xml"/>
+        <mapper resource="mapper/FepManagementMapper.xml"/>
+        <mapper resource="mapper/AppMngMapper.xml"/>
+        <mapper resource="mapper/MsgInfoMapper.xml"/>
+        <mapper resource="mapper/BizDayMapper.xml"/>
+        <mapper resource="mapper/BatchMapper.xml"/>
+        <mapper resource="mapper/SvcMapper.xml"/>
+        <mapper resource="mapper/RoleMapper.xml"/>
+    </mappers>
+</configuration>

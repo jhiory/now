@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="doit.now.security.repository.UserRepository">
+
+<select id="selectUserByUserId" resultType="doit.now.security.vo.UserVo">
+        SELECT A.USER_ID
+	        ,A.USER_NM
+			,A.DEPT_NM
+			,A.JOB_NM
+			,A.TEL_NO
+			,A.EMAIL
+	        ,B.PWD
+			,B.PWD_FAIL_CT
+			,B.LAST_PWD_UPD_DTTM
+			,B.LAST_LOGIN_SUCCESS_DTTM
+			,B.LOGIN_CT
+			,C.ROLE_ID
+			,B.REG_ID
+			,B.REG_DTTM
+			,B.MOD_ID
+			,B.MOD_DTTM
+        FROM USER_INF A, LOGIN B, ROLE_USER C
+        WHERE A.USER_ID = #{userId}
+        AND A.USER_ID = B.USER_ID
+        AND A.USER_ID = C.USER_ID
+        AND coalesce(A.USE_YN, 'Y') = 'Y'
+    </select>
+
+<select id="selectRoleMapMenus" parameterType="String" resultType="doit.now.vo.MenuVo">
+		WITH RECURSIVE CTE AS (
+			SELECT A.*
+			FROM HMF_PGM_INF A
+			WHERE 1=1
+			AND A.USE_YN = 'Y'
+			AND A.UPPER_PGM_ID = 'MENU000000'
+			UNION ALL
+			SELECT A.*
+			FROM HMF_PGM_INF A, CTE B
+			WHERE A.UPPER_PGM_ID = B.PGM_ID
+		)
+		SELECT D.*
+		FROM HMF_ROLE_INF B, HMF_ROLE_PGM C, HMF_PGM_INF D, CTE X
+		WHERE B.ROLE_ID = #{roleId}
+		AND B.ROLE_ID = C.ROLE_ID
+		AND D.PGM_ID = C.PGM_ID
+		AND D.USE_YN = 'Y'
+		AND X.PGM_ID = D.PGM_ID
+		ORDER BY PGM_ORDR
+    </select>
+
+<select id="selectPasswordByUserId" parameterType="String" resultType="String">
+		SELECT PWD FROM LOGIN
+		WHERE USER_ID = #{values}
+	</select>
+
+<update id="updatePassword">
+		UPDATE LOGIN
+		SET PWD = #{mngPwd}
+			,LAST_PWD_UPD_DTTM = NOW()
+			,MOD_ID = #{modUser}
+			,MOD_DTTM = NOW()
+		WHERE USER_ID = #{mngId}
+	</update>
+
+<insert id="registPwdHistory">
+		INSERT INTO HMF_PWD_HST (
+		HST_SN
+			, USER_ID
+			, PWD
+			, REG_ID
+			, REG_DTTM
+			, MOD_ID
+			, MOD_DTTM
+		)
+		VALUES (
+			(SELECT coalesce(MAX(HST_SN) + 1,1) FROM HMF_PWD_HST AS A)
+			, #{mngId}
+			, #{mngPwd}
+			, #{regUser}
+			, NOW()
+			, #{modUser}
+			, NOW()
+		);
+	</insert>
+
+<select id="selectRecentPwdHistory" parameterType="String" resultType="doit.now.security.vo.PwdHstVo">
+		SELECT HST_SN
+			, USER_ID
+			, PWD
+			, REG_ID
+			, REG_DTTM
+			, MOD_ID
+			, MOD_DTTM
+		FROM HMF_PWD_HST
+		WHERE USER_ID = #{mngId}
+		ORDER BY HST_SN DESC limit 3;
+	</select>
+
+<select id="selectLoginInfo" resultType="doit.now.vo.UserLoginVo">
+		SELECT USER_ID
+			, PWD
+			, PWD_FAIL_CT
+			, LAST_PWD_UPD_DTTM
+			, LAST_LOGIN_SUCCESS_DTTM
+			, LOGIN_CT
+		FROM LOGIN
+		WHERE USER_ID = #{userid}
+	</select>
+
+<select id="selectFailCountByUserId" resultType="Integer">
+		SELECT coalesce(pwd_fail_ct, 0)
+		from login
+		where user_id = #{value}
+	</select>
+
+<insert id="insertLoginHstForFail">
+    <selectKey keyProperty="hstSn" order="BEFORE" resultType="Integer">
+        SELECT coalesce(MAX(hst_sn) + 1, 1) AS hstSn FROM login_hst
+    </selectKey>
+	insert into login_hst (
+	hst_sn
+	, user_id
+	, pwd_fail_ct
+	, reg_id
+	, reg_dttm
+	, mod_id
+	, mod_dttm
+    )
+    values (
+    #{hstSn}
+    , #{userId}
+    , #{pwdFailCt}
+    , #{userId}
+    , now()
+    , #{userId}
+    , now()
+    )
+</insert>
+
+<update id="updateFailCtByUserId">
+		update login
+		set pwd_fail_ct = #{pwdFailCt}
+		where user_id = #{userId}
+	</update>
+
+<insert id="insertLoginHstForSuccess">
+    <selectKey keyProperty="hstSn" order="BEFORE" resultType="Integer">
+        SELECT coalesce(MAX(hst_sn) + 1, 1) AS hstSn FROM login_hst
+    </selectKey>
+    insert into login_hst (
+    hst_sn
+    , user_id
+    , pwd_fail_ct
+    , last_login_success_dttm
+    , reg_id
+    , reg_dttm
+    , mod_id
+    , mod_dttm
+    )
+    values (
+    #{hstSn}
+    , #{userId}
+    , #{pwdFailCt}
+    , now()
+    , #{userId}
+    , now()
+    , #{userId}
+    , now()
+    )
+</insert>
+</mapper>
