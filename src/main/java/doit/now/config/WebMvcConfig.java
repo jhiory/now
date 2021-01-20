@@ -8,17 +8,14 @@ import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.LocaleResolver;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 import java.util.Locale;
 
 @Configuration
-@EnableWebMvc
+//@EnableWebMvc
 public class WebMvcConfig implements WebMvcConfigurer {
     private HandlerInterceptor handlerInterceptor;
     @Value("${spring.mvc.locale}")
@@ -35,12 +32,18 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     private final int MAX_AGE_SECS = 3600;
 
+//    @Override
+//    public void addCorsMappings(CorsRegistry registry) {
+//        registry.addMapping("/**")
+//                .allowedOrigins("*")
+//                .allowedMethods("HEAD", "OPTIONS", "GET", "POST", "PUT", "PATCH", "DELETE")
+//                .maxAge(MAX_AGE_SECS);
+//    }
     @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")
-                .allowedOrigins("*")
-                .allowedMethods("HEAD", "OPTIONS", "GET", "POST", "PUT", "PATCH", "DELETE")
-                .maxAge(MAX_AGE_SECS);
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/m/**")   // 핸들러 추가
+                .addResourceLocations("classpath:/m/") //  클래스패스 설정시 끝에 꼭 / 넣어주자.
+                .setCachePeriod(20);                   // 초단위
     }
     @Override
     public void addInterceptors(InterceptorRegistry registry)
