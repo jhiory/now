@@ -4,7 +4,7 @@
 
 <mapper namespace="doit.now.mapper.UserMapper">
 
-    <select id="getUserList" resultType="com.example.vi.domain.User">
+    <select id="getUserList" resultType="doit.now.vo.UserInfoVo">
         SELECT *
         FROM USER_INFO
     </select>

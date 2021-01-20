@@ -4,8 +4,8 @@ import lombok.Data;
 import org.apache.ibatis.type.Alias;
 
 @Data
-@Alias("user")
-public class UserVo {
+@Alias("UserInfoVo")
+public class UserInfoVo {
     private String userId;
     private String userNm;
     private String deptNm;

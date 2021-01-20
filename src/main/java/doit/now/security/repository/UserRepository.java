@@ -18,7 +18,7 @@ public interface UserRepository extends UserDetailsService {
      * @param userId
      * @return
      */
-    default UserVo selectUserByUserId(@Param("userId") String userId) {
+    default UserInfoVo selectUserByUserId(@Param("userId") String userId) {
         return null;
     }
      

@@ -4,7 +4,7 @@
 
 <mapper namespace="doit.now.security.repository.UserRepository">
 
-<select id="selectUserByUserId" resultType="doit.now.security.vo.UserVo">
+<select id="selectUserByUserId" resultType="doit.now.vo.UserInfoVo">
         SELECT A.USER_ID
 	        ,A.USER_NM
 			,A.DEPT_NM
@@ -85,7 +85,7 @@
 		);
 	</insert>
 
-<select id="selectRecentPwdHistory" parameterType="String" resultType="doit.now.security.vo.PwdHstVo">
+<select id="selectRecentPwdHistory" parameterType="String" resultType="doit.now.vo.PwdHstVo">
 		SELECT HST_SN
 			, USER_ID
 			, PWD

@@ -23,11 +23,11 @@ public class NowMainController
      */
 	@NoBizLog
     @ApiOperation(value = "메인 페이지", notes="메인 페이지로 이동한다")
-    @GetMapping("/doit/now/main")
+    @GetMapping("/main")
     public String moveTwbMain(Model model) throws Exception
     {
         log.debug("moveMain");
-        return "main";
+        return "main/main";
     }
 
 }

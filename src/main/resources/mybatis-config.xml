@@ -7,10 +7,8 @@
         <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
     <typeAliases>
-        <package name="com.example.vi.vo"/>
+        <package name="doit.now.vo"/>
         <package name="postgres"/>
-        <package name="com.example.vi.domain"/>
-
     </typeAliases>
     <mappers>
         <mapper resource="mapper/AppMenuInfoMapper.xml"/>
