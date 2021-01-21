@@ -15,7 +15,7 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import java.util.Locale;
 
 @Configuration
-//@EnableWebMvc
+@EnableWebMvc
 public class WebMvcConfig implements WebMvcConfigurer {
     private HandlerInterceptor handlerInterceptor;
     @Value("${spring.mvc.locale}")
@@ -40,15 +40,27 @@ public class WebMvcConfig implements WebMvcConfigurer {
 //                .maxAge(MAX_AGE_SECS);
 
 //    }
+    
+private static final String[] CLASSPATH_RESOURCE_LOCATIONS = {
+        "classpath:/META-INF/resources/", "classpath:/resources/",
+        "classpath:/static/", "classpath:/public/" };
+
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//        registry.addResourceHandler("/m/**")   // 핸들러 추가
-//                .addResourceLocations("classpath:/m/") //  클래스패스 설정시 끝에 꼭 / 넣어주자.
-//                .setCachePeriod(20);                   // 초단위
         registry.addResourceHandler("/**")
-                .addResourceLocations("classpath:/static/");
+                .addResourceLocations(CLASSPATH_RESOURCE_LOCATIONS);
 
     }
+
+//    @Override
+//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+////        registry.addResourceHandler("/m/**")   // 핸들러 추가
+////                .addResourceLocations("classpath:/m/") //  클래스패스 설정시 끝에 꼭 / 넣어주자.
+////                .setCachePeriod(20);                   // 초단위
+//        registry.addResourceHandler("/**")
+//                .addResourceLocations("classpath:/static/");
+//    }
     @Override
     public void addInterceptors(InterceptorRegistry registry)
     {
@@ -58,7 +70,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/common/web/view")
                 .excludePathPatterns("/api/ProjectCommon/**")	//SIGNUP에서 사용
                 .excludePathPatterns("/error/web/**")
-                .excludePathPatterns("/main/kotis/web/TwbMain")
+                .excludePathPatterns("/error/web/**")
+                .excludePathPatterns("/static/**")
         ;
     }
     @Bean
