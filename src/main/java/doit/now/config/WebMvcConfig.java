@@ -15,7 +15,7 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import java.util.Locale;
 
 @Configuration
-@EnableWebMvc
+//@EnableWebMvc
 public class WebMvcConfig implements WebMvcConfigurer {
     private HandlerInterceptor handlerInterceptor;
     @Value("${spring.mvc.locale}")
@@ -32,26 +32,26 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     private final int MAX_AGE_SECS = 3600;
 
-//    @Override
-//    public void addCorsMappings(CorsRegistry registry) {
-//        registry.addMapping("/**")
-//                .allowedOrigins("*")
-//                .allowedMethods("HEAD", "OPTIONS", "GET", "POST", "PUT", "PATCH", "DELETE")
-//                .maxAge(MAX_AGE_SECS);
-
-//    }
-    
-private static final String[] CLASSPATH_RESOURCE_LOCATIONS = {
-        "classpath:/META-INF/resources/", "classpath:/resources/",
-        "classpath:/static/", "classpath:/public/" };
-
-
     @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/**")
-                .addResourceLocations(CLASSPATH_RESOURCE_LOCATIONS);
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+                .allowedOrigins("*")
+                .allowedMethods("HEAD", "OPTIONS", "GET", "POST", "PUT", "PATCH", "DELETE")
+                .maxAge(MAX_AGE_SECS);
 
     }
+
+private static final String[] CLASSPATH_RESOURCE_LOCATIONS = {
+       "classpath:/resources/",
+        "classpath:/static/"};
+
+
+//    @Override
+//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+//        registry.addResourceHandler("/**")
+//                .addResourceLocations(CLASSPATH_RESOURCE_LOCATIONS);
+////                .addResourceLocations("classpath:/static/**");
+//    }
 
 //    @Override
 //    public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -71,7 +71,9 @@ private static final String[] CLASSPATH_RESOURCE_LOCATIONS = {
                 .excludePathPatterns("/api/ProjectCommon/**")	//SIGNUP에서 사용
                 .excludePathPatterns("/error/web/**")
                 .excludePathPatterns("/error/web/**")
-                .excludePathPatterns("/static/**")
+                .excludePathPatterns("/**/css/**")
+                .excludePathPatterns("/**/js/**")
+                .excludePathPatterns("/resources/static/**")
         ;
     }
     @Bean

@@ -4,6 +4,7 @@ import doit.now.security.jwt.JwtAuthenticationEntryPoint;
 import doit.now.security.jwt.JwtAuthenticationFilter;
 import doit.now.security.service.CustomAuthenticationProvider;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -41,8 +42,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/configuration/security",
                 "/swagger-ui.html",
                 "/webjars/**",
-                "/swagger/**");
-        web.ignoring().antMatchers("/static/**");
+                "/swagger/**")
+                .antMatchers("/**/css/**")
+                .antMatchers("/**/img/**")
+                .antMatchers("/**/js/**")
+                .antMatchers("/**/font/**");
+
+        web.ignoring().requestMatchers(PathRequest.toStaticResources().atCommonLocations());
+
     }
 
     @Override
@@ -61,10 +68,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/auth/**").permitAll()
                 .antMatchers("/**").permitAll()
+                .antMatchers("/**/css/**").permitAll()
+                .antMatchers("/**/img/**").permitAll()
+                .antMatchers("/**/js/**").permitAll()
+                .antMatchers("/**/font/**").permitAll()
                 .antMatchers("/user/**").permitAll()
                 .antMatchers("/file/**").permitAll()
                 .antMatchers("/actuator/**").permitAll()
                 .antMatchers("/", "/home", "/js/**", "/css/**").permitAll()
+                .antMatchers("/resources/**/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -72,11 +84,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .logout()
+
                 .permitAll();
 
 
         // Add our custom JWT security filter
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+
 
     }
 
